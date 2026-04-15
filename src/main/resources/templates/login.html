@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - Ariel Dian</title>
+    <style>
+        :root { --bg-deep: #062401; --bg-card: #0a3302; --primary: #49B819; --text: #e2e8f0; }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at center, #0a3d02 0%, var(--bg-deep) 100%); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; color: var(--text); }
+        .login-card { background: var(--bg-card); padding: 45px; border-radius: 28px; width: 340px; border: 1px solid rgba(73, 184, 25, 0.3); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6); }
+        h2 { text-align: center; margin-bottom: 35px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+        .input-group { margin-bottom: 22px; }
+        label { display: block; margin-bottom: 8px; font-size: 13px; color: #84cc16; font-weight: 600; text-transform: uppercase; }
+        input { width: 100%; padding: 14px; background: #041a01; border: 1px solid #164e0a; border-radius: 14px; color: white; box-sizing: border-box; transition: 0.3s; }
+        input:focus { outline: none; border-color: var(--primary); background: #062401; box-shadow: 0 0 15px rgba(73, 184, 25, 0.2); }
+        button { width: 100%; padding: 14px; background: var(--primary); color: #062401; border: none; border-radius: 14px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px; font-size: 16px; }
+        button:hover { background: #5ce620; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(73, 184, 25, 0.3); }
+        .error { color: #f87171; text-align: center; font-size: 13px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+<div class="login-card">
+    <h2>LOGIN</h2>
+    <form th:action="@{/login}" method="post">
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="admin" required/>
+        </div>
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="••••••••" required/>
+        </div>
+        <button type="submit">SINKRONKAN</button>
+    </form>
+    <p class="error" th:if="${error}" th:text="${error}"></p>
+</div>
+</body>
+</html>
