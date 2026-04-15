@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Input Data - Ariel Dian</title>
+    <style>
+        :root { --primary: #49B819; --bg-dark: #062401; --card-dark: #0a3302; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); padding: 60px 20px; margin: 0; color: white; }
+        .container { max-width: 500px; margin: auto; }
+        .form-card { background: var(--card-dark); padding: 45px; border-radius: 30px; border: 1px solid #164e0a; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        h2 { margin: 0 0 10px 0; color: var(--primary); }
+        p { color: #64748b; margin-bottom: 35px; font-size: 14px; }
+        .field { margin-bottom: 25px; }
+        label { display: block; font-weight: 600; margin-bottom: 10px; font-size: 13px; color: #84cc16; text-transform: uppercase; }
+        input[type="text"] { width: 100%; padding: 15px; border: 1px solid #164e0a; background: #041a01; border-radius: 14px; box-sizing: border-box; color: white; transition: 0.3s; }
+        input[type="text"]:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 10px rgba(73, 184, 25, 0.2); }
+        .radio-box { display: flex; gap: 20px; padding: 10px 0; }
+        .btn-save { width: 100%; background: var(--primary); color: #062401; border: none; padding: 16px; border-radius: 14px; font-weight: 800; cursor: pointer; margin-top: 15px; font-size: 16px; transition: 0.3s; }
+        .btn-save:hover { background: #5ce620; transform: translateY(-2px); }
+        .back { display: block; text-align: center; margin-top: 25px; color: #475569; text-decoration: none; font-size: 14px; }
+        .back:hover { color: var(--primary); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="form-card">
+        <h2>INPUT DATA</h2>
+        <p>Formulir pendaftaran mahasiswa baru ke sistem.</p>
+
+        <form th:action="@{/submit}" th:object="${user}" method="post">
+            <div class="field">
+                <label>Nama Lengkap</label>
+                <input type="text" th:field="*{nama}" placeholder="Nama Lengkap" required/>
+            </div>
+
+            <div class="field">
+                <label>Nomor Induk Mahasiswa</label>
+                <input type="text" th:field="*{nim}" placeholder="Nomor Induk Mahasiswa" required/>
+            </div>
+
+            <div class="field">
+                <label>Opsi Gender</label>
+                <div class="radio-box">
+                    <label style="font-weight: 400;"><input type="radio" th:field="*{jenisKelamin}" value="Laki-laki" required/> Laki-laki</label>
+                    <label style="font-weight: 400;"><input type="radio" th:field="*{jenisKelamin}" value="Perempuan"/> Perempuan</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-save">SUBMIT DATA</button>
+        </form>
+        <a th:href="@{/home}" class="back">← Kembali ke Dashboard</a>
+    </div>
+</div>
+</body>
+</html>
