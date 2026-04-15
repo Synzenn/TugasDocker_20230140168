@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard - 20230140168</title>
+    <style>
+        :root { --primary: #49B819; --bg-dark: #061a01; --card-dark: #0a2402; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); margin: 0; display: flex; min-height: 100vh; color: #cbd5e1; }
+        .sidebar { width: 240px; background: #041201; padding: 40px 25px; border-right: 1px solid #163a0a; }
+        .main-content { flex: 1; padding: 45px; }
+        .header-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        h1 { font-size: 28px; color: white; margin: 0; font-weight: 700; }
+        .btn { text-decoration: none; padding: 12px 24px; border-radius: 14px; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        .btn-primary { background: var(--primary); color: #061a01; }
+        .btn-logout { color: #94a3b8; border: 1px solid #334155; }
+        .btn:hover { opacity: 0.9; transform: scale(1.05); }
+        .card { background: var(--card-dark); border-radius: 24px; border: 1px solid #163a0a; overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #0d2d03; color: var(--primary); padding: 20px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+        td { padding: 20px; border-bottom: 1px solid #163a0a; color: #e2e8f0; }
+        tr:hover { background: rgba(73, 184, 25, 0.05); }
+        .badge { padding: 6px 14px; border-radius: 10px; font-size: 12px; background: rgba(73, 184, 25, 0.15); color: var(--primary); border: 1px solid rgba(73, 184, 25, 0.3); }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <h2 style="color: var(--primary); margin-bottom: 10px;">ArielDeploy</h2>
+    <p style="font-size: 12px; color: #475569;">NIM: 20230140168</p>
+    <div style="margin-top: 50px; color: var(--primary); font-size: 14px; font-weight: 600;">⬤ Main Database</div>
+</div>
+
+<div class="main-content">
+    <div class="header-box">
+        <div>
+            <h1>Data Repository</h1>
+            <p style="color: #64748b; margin-top: 8px;">Manajemen data mahasiswa sesi ke-6.</p>
+        </div>
+        <div>
+            <a th:href="@{/form}" class="btn btn-primary">Entri Data Baru</a>
+            <a th:href="@{/logout}" class="btn btn-logout" style="margin-left: 10px;">Keluar</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <table>
+            <thead>
+            <tr>
+                <th>Indeks</th>
+                <th>Nama Lengkap</th>
+                <th>NIM</th>
+                <th>Status/Gender</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${users.empty}">
+                <td colspan="4" style="text-align: center; color: #475569; padding: 60px;">Database kosong. Menunggu input...</td>
+            </tr>
+            <tr th:each="user, iterStat : ${users}">
+                <td th:text="${iterStat.count}"></td>
+                <td th:text="${user.nama}" style="font-weight: 600; color: white;"></td>
+                <td th:text="${user.nim}"></td>
+                <td><span class="badge" th:text="${user.jenisKelamin}"></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
